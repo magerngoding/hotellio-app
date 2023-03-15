@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "425174209550",
+    "project_id": "hotellio-app",
+    "storage_bucket": "hotellio-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425174209550:android:0922e247917f89cce9185f",
+        "android_client_info": {
+          "package_name": "com.drexapp_hotellio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425174209550-ca4h5ltcbdre6rpq3itk6er5ens73eqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKEdjPMC1EBmprc5p-QUYxsPUSuviomGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425174209550-ca4h5ltcbdre6rpq3itk6er5ens73eqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
