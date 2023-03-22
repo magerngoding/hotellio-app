@@ -1,5 +1,5 @@
 class AppAsset {
-  static const logo = 'logo.png';
+  static const logo = 'asset/logo.png';
   static const profile = 'asset/profile.png';
   static const bgIntro = 'asset/bg_intro.png';
   static const iconHistory = 'asset/icon_history.png';

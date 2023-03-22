@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hotels_app/config/app_route.dart';
 import 'package:hotels_app/page/signin_page.dart';
 import 'package:hotels_app/widget/button_custome.dart';
 
@@ -15,7 +16,7 @@ class IntroPage extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'assets/bg_intro.png',
+            'asset/bg_intro.png',
             fit: BoxFit.cover,
           ),
           Container(
@@ -60,9 +61,7 @@ class IntroPage extends StatelessWidget {
                 ButtonCustome(
                   label: 'Get Started',
                   onTap: () {
-                    Get.to(
-                      SigninPage(),
-                    );
+                    Navigator.pushReplacementNamed(context, AppRoute.signin);
                   },
                   isExpand: true,
                 )
