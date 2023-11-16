@@ -51,7 +51,7 @@ class SigninPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/logo.png',
+                          'asset/logo.png',
                           width: 180,
                           fit: BoxFit.fitWidth,
                         ),
