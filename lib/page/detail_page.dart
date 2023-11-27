@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:hotels_app/config/app_asset.dart';
 import 'package:hotels_app/config/app_color.dart';
+import 'package:hotels_app/config/app_format.dart';
 import 'package:hotels_app/core.dart';
+import 'package:hotels_app/widget/button_custome.dart';
 
 class DetailPage extends StatelessWidget {
   final List facilites = [
@@ -44,6 +46,51 @@ class DetailPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            top: BorderSide(
+              color: Colors.grey[100]!,
+              width: 1.5,
+            ),
+          ),
+        ),
+        height: 80,
+        padding: EdgeInsets.fromLTRB(
+          16,
+          12,
+          16,
+          8,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppFormat.currency(
+                      hotel.price.toDouble(),
+                    ),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: AppColor.secondary,
+                          fontWeight: FontWeight.w900,
+                        ),
+                  ),
+                  Text(
+                    'per night',
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ButtonCustome(label: 'Booking Now', onTap: () {}),
+          ],
+        ),
+      ),
       body: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -63,9 +110,7 @@ class DetailPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(hotel.description),
             ),
-            const SizedBox(
-              height: 16.0,
-            ),
+            const SizedBox(height: 16.0),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
@@ -76,9 +121,7 @@ class DetailPage extends StatelessWidget {
               ),
             ),
             gridFacilites(),
-            const SizedBox(
-              height: 16.0,
-            ),
+            const SizedBox(height: 16.0),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
@@ -88,11 +131,52 @@ class DetailPage extends StatelessWidget {
                     ),
               ),
             ),
-            const SizedBox(
-              height: 16.0,
-            ),
+            const SizedBox(height: 16.0),
+            activities(hotel),
+            const SizedBox(height: 20.0),
           ],
         ),
+      ),
+    );
+  }
+
+  SizedBox activities(Hotel hotel) {
+    return SizedBox(
+      height: 105.0,
+      child: ListView.builder(
+        itemCount: hotel.activities.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          Map activity = hotel.activities[index];
+          return Padding(
+            padding: EdgeInsets.fromLTRB(
+              index == 0 ? 16 : 8,
+              0,
+              index == hotel.activities.length - 1 ? 16 : 8,
+              0,
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.network(
+                      activity['image'],
+                      width: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 6.0,
+                ),
+                Text(
+                  activity['name'],
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
