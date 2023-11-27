@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:hotels_app/config/app_asset.dart';
 import 'package:hotels_app/config/app_color.dart';
 import 'package:hotels_app/config/app_format.dart';
+import 'package:hotels_app/config/app_route.dart';
 import 'package:hotels_app/controller/c_nearby.dart';
 import 'package:hotels_app/core.dart';
 
@@ -203,110 +204,119 @@ class hotels extends StatelessWidget {
           itemCount: list.length,
           itemBuilder: (context, index) {
             Hotel hotel = list[index];
-            return Container(
-              margin: EdgeInsets.fromLTRB(
-                16,
-                index == 0 ? 0 : 8,
-                16,
-                index == list.length - 1 ? 16 : 8,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
-                    child: AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: Image.network(
-                        hotel.cover,
-                        fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  AppRoute.detail,
+                  arguments: hotel,
+                );
+              },
+              child: Container(
+                margin: EdgeInsets.fromLTRB(
+                  16,
+                  index == 0 ? 0 : 8,
+                  16,
+                  index == list.length - 1 ? 16 : 8,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
+                      ),
+                      child: AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: Image.network(
+                          hotel.cover,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                hotel.name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  hotel.name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(
+                                  height: 4.0,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Start from ',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 13.0,
+                                      ),
                                     ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const SizedBox(
-                                height: 4.0,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Start from ',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 13.0,
+                                    Text(
+                                      AppFormat.currency(
+                                        hotel.rate.toDouble(),
+                                      ),
+                                      style: TextStyle(
+                                        color: AppColor.secondary,
+                                        fontSize: 13.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    AppFormat.currency(
-                                      hotel.rate.toDouble(),
+                                    Text(
+                                      '/night',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 13.0,
+                                      ),
                                     ),
-                                    style: TextStyle(
-                                      color: AppColor.secondary,
-                                      fontSize: 13.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    '/night',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 13.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        RatingBar.builder(
-                          initialRating: hotel.rate,
-                          minRating: 0,
-                          direction: Axis.horizontal,
-                          allowHalfRating: true,
-                          itemCount: 5,
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star_rate_rounded,
-                            color: AppColor.starActive,
+                          RatingBar.builder(
+                            initialRating: hotel.rate,
+                            minRating: 0,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star_rate_rounded,
+                              color: AppColor.starActive,
+                            ),
+                            itemSize: 18,
+                            unratedColor: AppColor.starInActive,
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
+                            ignoreGestures: true,
                           ),
-                          itemSize: 18,
-                          unratedColor: AppColor.starInActive,
-                          onRatingUpdate: (rating) {
-                            print(rating);
-                          },
-                          ignoreGestures: true,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             );
           },

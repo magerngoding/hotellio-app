@@ -7,10 +7,12 @@ import 'package:hotels_app/config/app_route.dart';
 import 'package:hotels_app/config/session.dart';
 import 'package:hotels_app/firebase_options.dart';
 import 'package:hotels_app/model/user.dart';
+import 'package:hotels_app/page/detail_page.dart';
 import 'package:hotels_app/page/home_page.dart';
 import 'package:hotels_app/page/intro_page.dart';
 import 'package:hotels_app/page/signin_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -19,6 +21,7 @@ Future<void> main() async {
   initializeDateFormatting('en_US');
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -49,10 +52,10 @@ class MyApp extends StatelessWidget {
         AppRoute.intro: ((context) => IntroPage()),
         AppRoute.home: ((context) => HomePage()),
         AppRoute.signin: ((context) => SigninPage()),
-        AppRoute.detail: ((context) => IntroPage()),
+        AppRoute.detail: ((context) => DetailPage()),
         AppRoute.checkoutSuccess: ((context) => IntroPage()),
         AppRoute.detailBooking: ((context) => IntroPage()),
       },
     );
   }
-}
+}
