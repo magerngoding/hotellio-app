@@ -13,6 +13,7 @@ class Booking {
     required this.serviceFee,
     required this.activities,
     required this.totalPayment,
+    required this.status,
     required this.isDone,
   });
 
@@ -29,6 +30,7 @@ class Booking {
   int serviceFee;
   int activities;
   int totalPayment;
+  String status;
   bool isDone;
 
   factory Booking.fromJson(Map<String, dynamic> json) => Booking(
@@ -45,6 +47,7 @@ class Booking {
         serviceFee: json["service_fee"],
         activities: json["activities"],
         totalPayment: json["total_payment"],
+        status: json["status"],
         isDone: json["is_done"],
       );
 
@@ -62,6 +65,25 @@ class Booking {
         "service_fee": serviceFee,
         "activities": activities,
         "total_payment": totalPayment,
+        "status": status,
         "is_done": isDone,
       };
 }
+
+Booking get initBooking => Booking(
+      id: '',
+      idHotel: '',
+      cover: '',
+      name: '',
+      location: '',
+      date: '',
+      guest: 0,
+      breakfast: '',
+      checkInTime: '',
+      night: 0,
+      serviceFee: 0,
+      activities: 0,
+      totalPayment: 0,
+      status: '',
+      isDone: false,
+    );
