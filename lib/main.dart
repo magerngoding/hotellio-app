@@ -7,6 +7,7 @@ import 'package:hotels_app/config/app_route.dart';
 import 'package:hotels_app/config/session.dart';
 import 'package:hotels_app/firebase_options.dart';
 import 'package:hotels_app/model/user.dart';
+import 'package:hotels_app/page/checkout_page.dart';
 import 'package:hotels_app/page/detail_page.dart';
 import 'package:hotels_app/page/home_page.dart';
 import 'package:hotels_app/page/intro_page.dart';
@@ -53,7 +54,8 @@ class MyApp extends StatelessWidget {
         AppRoute.home: ((context) => HomePage()),
         AppRoute.signin: ((context) => SigninPage()),
         AppRoute.detail: ((context) => DetailPage()),
-        AppRoute.checkoutSuccess: ((context) => IntroPage()),
+        AppRoute.checkout: ((context) => CheckoutPage()),
+        AppRoute.checkoutSuccess: ((context) => CheckoutPage()),
         AppRoute.detailBooking: ((context) => IntroPage()),
       },
     );
