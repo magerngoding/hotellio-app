@@ -7,7 +7,10 @@ import 'package:hotels_app/config/app_asset.dart';
 import 'package:hotels_app/config/app_color.dart';
 import 'package:hotels_app/config/app_format.dart';
 import 'package:hotels_app/controller/c_user.dart';
+import 'package:hotels_app/core.dart';
+import 'package:hotels_app/source/booking_source.dart';
 import 'package:hotels_app/widget/button_custome.dart';
+import 'package:intl/intl.dart';
 
 import '../model/hotel.dart';
 
@@ -44,7 +47,28 @@ class CheckoutPage extends StatelessWidget {
           const SizedBox(height: 20.0),
           ButtonCustome(
             label: 'Procced to Payment',
-            onTap: () {},
+            onTap: () {
+              BookingSource.addBooking(
+                cUser.data.id!,
+                Booking(
+                  id: 'id',
+                  idHotel: hotel.id,
+                  cover: hotel.cover,
+                  name: hotel.name,
+                  location: hotel.location,
+                  date: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                  guest: 1,
+                  breakfast: 'Include',
+                  checkInTime: '08.00 WIB',
+                  night: 2,
+                  serviceFee: 6,
+                  activities: 40,
+                  totalPayment: hotel.price + 2 + 6 + 40,
+                  status: 'PAID',
+                  isDone: false,
+                ),
+              );
+            },
             isExpand: true,
           ),
         ],
