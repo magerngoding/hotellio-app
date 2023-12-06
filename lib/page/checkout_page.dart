@@ -3,8 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:hotels_app/config/app_asset.dart';
+import 'package:hotels_app/config/app_color.dart';
 import 'package:hotels_app/config/app_format.dart';
 import 'package:hotels_app/controller/c_user.dart';
+import 'package:hotels_app/widget/button_custome.dart';
 
 import '../model/hotel.dart';
 
@@ -37,6 +40,82 @@ class CheckoutPage extends StatelessWidget {
           const SizedBox(height: 16.0),
           roomDetails(context),
           const SizedBox(height: 16.0),
+          paymentMethod(context),
+          const SizedBox(height: 20.0),
+          ButtonCustome(
+            label: 'Procced to Payment',
+            onTap: () {},
+            isExpand: true,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container paymentMethod(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: Colors.white,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Payment Method',
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          const SizedBox(
+            height: 8.0,
+          ),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: Colors.grey[300]!,
+              ),
+            ),
+            child: Row(
+              children: [
+                Image.asset(
+                  AppAsset.iconMasterCard,
+                  width: 50,
+                ),
+                const SizedBox(
+                  width: 16.0,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Elliot York Well',
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      Text(
+                        'Balance ${AppFormat.currency(80000)}',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.check_circle,
+                  color: AppColor.secondary,
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
