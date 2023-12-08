@@ -2,17 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:hotels_app/config/app_asset.dart';
 import 'package:hotels_app/config/app_color.dart';
 import 'package:hotels_app/config/app_format.dart';
+import 'package:hotels_app/config/app_route.dart';
 import 'package:hotels_app/controller/c_user.dart';
 import 'package:hotels_app/core.dart';
 import 'package:hotels_app/source/booking_source.dart';
 import 'package:hotels_app/widget/button_custome.dart';
 import 'package:intl/intl.dart';
-
-import '../model/hotel.dart';
 
 class CheckoutPage extends StatelessWidget {
   final cUser = Get.put(CUser());
@@ -67,6 +65,11 @@ class CheckoutPage extends StatelessWidget {
                   status: 'PAID',
                   isDone: false,
                 ),
+              );
+              Navigator.pushNamed(
+                context,
+                AppRoute.checkoutSuccess,
+                arguments: hotel,
               );
             },
             isExpand: true,
