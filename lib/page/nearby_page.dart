@@ -140,7 +140,7 @@ class NearbyPage extends StatelessWidget {
     );
   }
 
-  Widget header(BuildContext context) {
+  Padding header(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(

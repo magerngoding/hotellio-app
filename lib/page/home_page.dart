@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hotels_app/controller/c_home.dart';
+import 'package:hotels_app/page/history_page.dart';
 import 'package:hotels_app/page/nearby_page.dart';
 
 import '../config/app_asset.dart';
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Obx(() {
         if (cHome.indexPage == 1) {
-          return Center(child: Text('History'));
+          return HistoryPage();
         }
         return NearbyPage();
       }),
