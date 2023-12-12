@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:grouped_list/grouped_list.dart';
 import 'package:hotels_app/config/app_color.dart';
 import 'package:hotels_app/config/app_format.dart';
+import 'package:hotels_app/config/app_route.dart';
 import 'package:hotels_app/controller/c_history.dart';
 import 'package:hotels_app/controller/c_user.dart';
 import 'package:hotels_app/core.dart';
@@ -67,7 +70,13 @@ class _HistoryPageState extends State<HistoryPage> {
                 return Padding(
                   padding: EdgeInsets.only(bottom: 16),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoute.detailBooking,
+                        arguments: element,
+                      );
+                    },
                     child: item(context, element),
                   ),
                 );
@@ -103,23 +112,25 @@ class _HistoryPageState extends State<HistoryPage> {
           const SizedBox(
             width: 16.0,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                booking.name,
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-              Text(
-                AppFormat.date(booking.date),
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w300,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  booking.name,
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
-              ),
-            ],
+                Text(
+                  AppFormat.date(booking.date),
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             width: 16.0,
@@ -148,6 +159,7 @@ class _HistoryPageState extends State<HistoryPage> {
 }
 
 Padding header(BuildContext context) {
+  final cHistory = Get.put(CHistory());
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16),
     child: Row(
@@ -171,12 +183,16 @@ Padding header(BuildContext context) {
                     fontWeight: FontWeight.w900,
                   ),
             ),
-            Text(
-              '100 transaction',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 12,
-              ),
+            Obx(
+              () {
+                return Text(
+                  '${cHistory.listBooking.length} transaction',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12,
+                  ),
+                );
+              },
             )
           ],
         )
