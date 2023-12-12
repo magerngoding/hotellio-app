@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hotels_app/core.dart';
 
+import '../model/booking.dart';
+
 class BookingSource {
   static Future<Booking?> checkIsBook(String userId, String hotelId) async {
     var result = await FirebaseFirestore.instance

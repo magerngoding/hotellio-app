@@ -15,6 +15,7 @@ import 'package:hotels_app/core.dart';
 import 'package:intl/intl.dart';
 
 import '../config/app_asset.dart';
+import '../model/booking.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});

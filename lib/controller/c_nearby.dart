@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:hotels_app/core.dart';
 import 'package:hotels_app/source/hotel_source.dart';
 
+import '../model/hotel.dart';
+
 class CNearby extends GetxController {
   final _category = 'All Place'.obs;
   String get category => _category.value;

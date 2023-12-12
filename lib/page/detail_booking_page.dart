@@ -6,6 +6,8 @@ import 'package:hotels_app/config/app_color.dart';
 import 'package:hotels_app/config/app_format.dart';
 import 'package:hotels_app/core.dart';
 
+import '../model/booking.dart';
+
 class DetailBookingPage extends StatelessWidget {
   DetailBookingPage({super.key});
 

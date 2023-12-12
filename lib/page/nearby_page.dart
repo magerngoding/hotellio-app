@@ -10,6 +10,8 @@ import 'package:hotels_app/config/app_route.dart';
 import 'package:hotels_app/controller/c_nearby.dart';
 import 'package:hotels_app/core.dart';
 
+import '../model/hotel.dart';
+
 class NearbyPage extends StatelessWidget {
   final cNearby = Get.put(CNearby());
 
@@ -146,13 +148,35 @@ class NearbyPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Image.asset(
-              AppAsset.profile,
-              width: 50,
-              height: 50,
-              fit: BoxFit.fill,
+          GestureDetector(
+            onTap: () {
+              showMenu(
+                context: context,
+                position: RelativeRect.fromLTRB(16, 16, 16, 0),
+                items: [
+                  PopupMenuItem(
+                    child: Text('Logout'),
+                    value: 'logout',
+                  ),
+                ],
+              ).then((value) {
+                if (value == 'logout') {
+                  Session.clearUser();
+                  Navigator.pushReplacementNamed(
+                    context,
+                    AppRoute.signin,
+                  );
+                }
+              });
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Image.asset(
+                AppAsset.profile,
+                width: 50,
+                height: 50,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           Column(

@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '425174209550',
     projectId: 'hotellio-app',
     storageBucket: 'hotellio-app.appspot.com',
-    iosClientId: '425174209550-6424n5rhv6c8ll68mmk0c7dr6nuqh9po.apps.googleusercontent.com',
+    iosClientId:
+        '425174209550-6424n5rhv6c8ll68mmk0c7dr6nuqh9po.apps.googleusercontent.com',
     iosBundleId: 'com.example.hotelsApp',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '425174209550',
     projectId: 'hotellio-app',
     storageBucket: 'hotellio-app.appspot.com',
-    iosClientId: '425174209550-6424n5rhv6c8ll68mmk0c7dr6nuqh9po.apps.googleusercontent.com',
+    iosClientId:
+        '425174209550-6424n5rhv6c8ll68mmk0c7dr6nuqh9po.apps.googleusercontent.com',
     iosBundleId: 'com.example.hotelsApp',
   );
 }
