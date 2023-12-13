@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hotels_app/controller/c_home.dart';
 import 'package:hotels_app/page/history_page.dart';
 import 'package:hotels_app/page/nearby_page.dart';
+import 'package:hotels_app/widget/coming_soon.dart';
 
 import '../config/app_asset.dart';
 import '../config/app_color.dart';
@@ -24,12 +25,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() {
-        if (cHome.indexPage == 1) {
-          return HistoryPage();
-        }
-        return NearbyPage();
-      }),
+      body: Obx(
+        () {
+          if (cHome.indexPage == 0) {
+            return NearbyPage();
+          }
+          if (cHome.indexPage == 1) {
+            return HistoryPage();
+          }
+          return ComingSoon();
+        },
+      ),
       bottomNavigationBar: Obx(
         () {
           return Material(
